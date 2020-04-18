@@ -1,5 +1,5 @@
 """
-
+客户端
 """
 from socket import *
 import sys
