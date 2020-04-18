@@ -61,7 +61,7 @@ class MyProcess(Process):
     def disponse(self):
         while True:
             # 接收客户请求
-            data, addr = self.connect.recv().decode()
+            data = self.connect.recv(1024).decode()
             msg = data.split(' ')
             # 处理用户退出
             if not data or msg[0] == 'X':

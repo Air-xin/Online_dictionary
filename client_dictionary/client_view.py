@@ -9,7 +9,6 @@ import re
 class MyDict():
     def __init__(self, tcp_sock):
         self.tcp_sock = tcp_sock
-        # self.name = None
 
     # 用户信息输入
     def user_put(self):
@@ -23,13 +22,17 @@ class MyDict():
                 self.tcp_sock.send(b'X ')
                 self.tcp_sock.close()
                 sys.exit()
-            RE = '\W+|\s+'
+            RE = r'\W+'
+            data1 = re.findall(RE, name)
+            data2 = re.findall(RE, passwd)
+            # print(data1,data2)
             # 对输入规范进行判断
-            if re.findall(RE, name) and re.findall(RE, passwd):
+            if len(data1) or len(data2):
                 print('请规范输入')
                 continue
             else:
                 msg = '%s %s' % (name, passwd)
+                # print(msg)
                 return msg
 
     # 注册
